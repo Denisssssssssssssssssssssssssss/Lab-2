@@ -1,53 +1,43 @@
-#include "employee.h"
-#include <string>
+#define _CRT_SECURE_NO_WARNINGS
+#pragma once
+#include <string.h>
 #include <stdio.h>
 #include <iostream>
+#include "equipment.h"
+#include "jobtitle.h"
+#include "employee.h"
 
-//конструктор класса employee со всеми параметрами
-employee::employee(int i, jobtitle j, equipment e) {
-	id = i;
-	equ = e;
-	jt = j;
+Employee initiation(int id, char jtitle[], int monthcost,char eqtitle[], int cost) {
+	Employee human;
+	human.id = id;
+	human.equ  = eqinitiation(eqtitle,cost);
+	human.jt = jtinitiation(jtitle, monthcost);
+	return human;
 }
 
-//конструктор класса employee с одним параметром
-employee::employee(int x) {
-	id = x;
-	equipment e(x);
-	equ = e;
-	jobtitle j(x);
-	jt = j;
-}
-
-//конструктор класса employee без параметров
-employee::employee() {
-	id = 0;
-	equipment e;
-	jobtitle j;
-	jt = j;
-	equ = e;
-}
-
-//метод полного вывода employee
-void employee::output() {
-	cout << "ID: " << this->id << endl;
-	jt.output();
-	equ.output();
-}
-
-//метод ввода employee
-void employee::input() {
-	cout << "Введите ID: ";
-	cin >> this->id;
+Employee input() {
+	Employee human;
+	int id;
+	printf("ID: ");
+	scanf("%d", &id);
+	human.id = id;
 	while (getchar() != '\n');
-	jt.input();
+	human.equ = inputeq();
 	while (getchar() != '\n');
-	equ.input();
+	human.jt = inputjt();
+	return human;
 }
 
-//метод подсчета затрат
-int employee::empcost() {
-	int salary = 0; //затарты
-	salary += jt.monthcost + equ.cost;
+
+void output(Employee human) {
+	printf("ID: %d\n", human.id);
+	eqoutput(human.equ);
+	jtoutput(human.jt);
+}
+
+
+int getsalary(Employee human) {
+	int salary = 0;
+	salary = human.jt.monthcost + human.equ.cost;
 	return salary;
 }

@@ -1,38 +1,38 @@
-#include "equipment.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 #include <iostream>
-#include <string>
-using namespace std;
+#include "equipment.h"
 
-//конструктор класса  со всеми параметрами
-equipment::equipment(string j,int cost) {
-	eqtitle = j;
-	this-> cost = cost;
+Equipment inputeq() {
+	Equipment equ;
+	int cost;
+	long lenghtofeqtitle = 1;
+	char* eqtitle = (char*)malloc(sizeof(char));;
+	char c;
+	printf("Введите Оборудование: ");
+	while ((c = getchar()) != '\n') {
+		eqtitle[lenghtofeqtitle - 1] = c;
+		lenghtofeqtitle++;
+		eqtitle = (char*)realloc(eqtitle, lenghtofeqtitle);
+	}
+	eqtitle[lenghtofeqtitle - 1] = '\0';
+	printf("Стоимость оборудования: ");
+	scanf("%d", &cost);
+	equ.cost = cost;
+	equ.eqtitle = eqtitle;
+	return equ;
 }
 
-//конструктор класса  с одним параметром
-equipment::equipment(int x) {
-	cost = x;
-	eqtitle = to_string(x);
+Equipment eqinitiation(char jtitle[], int monthcost) {
+	Equipment equ;
+	equ.eqtitle = (char*)malloc(sizeof(char));
+	strcpy(equ.eqtitle, jtitle);
+	equ.cost = monthcost;
+	return equ;
 }
-
-//конструктор класса  без параметров
-equipment::equipment() {
-	cost = 0;
-	eqtitle = "-";
-}
-
-//метод ввода класса 
-void equipment::input() {
+ 
+void eqoutput(Equipment equ) {
+		printf("Оборудование: %s\n", equ.eqtitle);
+		printf("Стоимость: %d\n", equ.cost);
+	}
 	
-	cout << "Введите тип оборудования: ";
-	getline(cin, eqtitle);
-	cout << "Введите цену оборудования: ";
-	cin >> cost;
-
-}
-
-//метод вывода
-void equipment::output() {
-	cout << "Оборудование: " << eqtitle << endl;
-	cout << "Цена оборудования: " << cost << endl;
-}

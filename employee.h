@@ -1,19 +1,21 @@
 #pragma once
-#include "jobtitle.h"
 #include "equipment.h"
-using namespace std;
+#include "jobtitle.h"
 
-class employee {
-public:
-	employee(int i, jobtitle j, equipment e);
-	employee(int x);
-	employee();
-	void output();
-	void input();
-	int empcost();
-private:
-	int id; //индивидуальный номер
-	jobtitle jt; //должность
-	equipment equ; //снар€жение
-};
-//123
+typedef struct employee {
+	int id; 
+	Equipment equ; 
+	Jobtitle jt; 
+
+} Employee;
+
+Employee initiation(int id, char jtitle[], int monthcost, char eqtitle[], int cost);
+Employee input();
+void output(Employee human);
+int getsalary(Employee human);
+Jobtitle inputjt();
+Equipment inputeq();
+Equipment eqinitiation(char eqtitle[],int cost);
+Jobtitle jtinitiation(char jtitle[], int monthcost);
+void eqoutput(Equipment equ);
+void jtoutput(Jobtitle jt);

@@ -1,39 +1,35 @@
-#include "employee.h"
-#include "equipment.h"
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
 #include <iostream>
-#include <string>
-using namespace std;
+#include "jobtitle.h"
 
-//конструктор класса jobtitle со всеми параметрами
-jobtitle::jobtitle(string j, int h) {
-	jtitle = j;
-	monthcost = h;
+Jobtitle inputjt() {
+	Jobtitle jt;
+	int monthcost;
+	long lenghtofjtitle = 1; 
+	char* jtitle = (char*)malloc(sizeof(char));;
+	char c;
+	printf("Введите должность: ");
+	while ((c = getchar()) != '\n') {
+		jtitle[lenghtofjtitle - 1] = c;
+		lenghtofjtitle++;
+		jtitle = (char*)realloc(jtitle, lenghtofjtitle);
+	}
+	jtitle[lenghtofjtitle - 1] = '\0';
+	printf("Зарплата: ");
+	scanf("%d", &monthcost);
+	jt.monthcost = monthcost;
+	jt.jtitle = jtitle;
+	return jt;
 }
-
-//конструктор класса jobtitle с одним параметром
-jobtitle::jobtitle(int x) {
-	jtitle = to_string(x);
-	monthcost = x;
+Jobtitle jtinitiation(char jtitle[], int monthcost) {
+	Jobtitle jt;
+	jt.jtitle = (char*)malloc(sizeof(char));
+	strcpy(jt.jtitle, jtitle);
+	jt.monthcost = monthcost;
+	return jt;
 }
-
-//конструктор класса jobtitle без параметров
-jobtitle::jobtitle() {
-	jtitle = "-";
-	monthcost = 0;
-}
-
-//метод ввода класса jobtitle
-void jobtitle::input() {
-	cout << "Введите должность: ";
-	getline(cin, jtitle);
-	cout << "Введите зарплату: ";
-	cin >> monthcost;
-	
-}
-
-//метод вывода
-void jobtitle::output() {
-	cout << "Должность: " << jtitle << endl;
-	cout << "Зарплата: " << monthcost << endl;
-	
-}
+void jtoutput(Jobtitle jt) {
+		printf("Должность: %s\n", jt.jtitle);
+		printf("Зарплата: %d\n", jt.monthcost);
+	}
