@@ -16,3 +16,4 @@ private:
 	jobtitle jt; //должность
 	equipment equ; //снаряжение
 };
+//123
