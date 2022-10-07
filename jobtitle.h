@@ -13,6 +13,6 @@ public:
 	void output();
 private:
 	string jtitle; //наименование должности
-	int monthcost; //
+	int monthcost; //зарплата
 };
 

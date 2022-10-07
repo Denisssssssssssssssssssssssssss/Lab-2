@@ -45,9 +45,9 @@ void employee::input() {
 	equ.input();
 }
 
-//метод подсчета зарплаты
+//метод подсчета затрат
 int employee::empcost() {
-	int salary = 0; //зарплата
+	int salary = 0; //затарты
 	salary += jt.monthcost + equ.cost;
 	return salary;
 }
