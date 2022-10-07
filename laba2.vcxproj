@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="employee.cpp" />
+    <ClCompile Include="equipment.cpp" />
     <ClCompile Include="jobtitle.cpp" />
     <ClCompile Include="laba2.cpp" />
   </ItemGroup>
